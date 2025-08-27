@@ -1,6 +1,7 @@
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 import About from "./Components/About";
+import Projects from "./Components/Projects";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Main />
       </div>
       <About />
+      <Projects />
     </>
   );
 };
