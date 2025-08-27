@@ -26,13 +26,13 @@ const ProjectCard = ({
           </span>
         ))}
       </div>
-      <div className="flex gap-3 justify-center items-center">
+      <div className="flex gap-3 justify-center items-center my-4">
         {demo && (
           <a
             href={demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-md"
+            className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md"
           >
             <FaExternalLinkAlt size={14} />
             Demo
@@ -43,7 +43,7 @@ const ProjectCard = ({
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-md"
+            className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md"
           >
             <FaGithub size={14} />
             Github
