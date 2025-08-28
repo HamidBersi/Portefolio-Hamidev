@@ -53,7 +53,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="max-w-md mt-10 p-6 bg-blue-50 shadow-2xl rounded-2xl mx-4">
+    <div className="h-145 w-[80%] md:w-[45%]  mx-auto mt-10 p-6 shadow-2xl rounded-2xl text-center bg-blue-50">
       <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
         Envoyez-moi un message
       </h3>
@@ -110,7 +110,7 @@ function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             rows={4}
-            className="mt-1 w-full border-0 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="mt-1 w-full border-0 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
             required
           ></textarea>
         </div>

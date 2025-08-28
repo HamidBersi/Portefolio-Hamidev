@@ -16,7 +16,7 @@ const ProjectCard = ({
   demo,
 }: ProjectCardProps) => {
   return (
-    <div className="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow-md border border-gray-200 w-[45%] gap-5 my-6x">
+    <div className="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow-md border border-gray-200 gap-5 my-6x">
       <h2 className="font-bold text-xl text-gray-900 mb-2">{title}</h2>
       <img src={image} alt={image} className="w-[97%] m-auto h-60 rounded-xl" />
       <div className="flex justify-center items-center gap-2">

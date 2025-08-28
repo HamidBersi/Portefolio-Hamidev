@@ -9,7 +9,7 @@ import {
 import { FaHandshake, FaBookOpen, FaLightbulb, FaCog } from "react-icons/fa";
 import { FaMobileAlt, FaDesktop } from "react-icons/fa";
 import { FiFigma } from "react-icons/fi";
-import CompetenceCard from "./CompetenceCard";
+import CompetenceCard from "./SoftSkillCard";
 
 const About = () => {
   const softSkills = [
@@ -38,7 +38,7 @@ const About = () => {
   return (
     <div className="flex flex-col justify-center items-center my-20" id="about">
       <h2 className="text-3xl font-bold text-gray-900">À Propos de moi</h2>
-      <p className="my-6 max-w-4xl text-center text-gray-500">
+      <p className="my-6 mx-8 max-w-4xl text-center text-gray-500">
         Je suis un développeur FullStack récemment diplômé, passionné par la
         création de solutions numériques accessibles et performantes. J'ai
         récemment terminé mon stage chez HRnov.ai, une expérience enrichissante
@@ -51,19 +51,19 @@ const About = () => {
       <h3 className="text-2xl font-bold text-blue-700 mt-4">
         Compétences techniques
       </h3>
-      <div className="flex justify-between items-center gap-20 my-5">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-7 md:gap-15 my-5">
         <div className="flex flex-col justify-center items-center">
           <h3 className="text-xl text-gray-500 my-3">Front-end</h3>
           <div className="flex gap-5">
-            <FaHtml5 className="text-orange-600 text-5xl" title="HTML5" />
-            <FaCss3Alt className="text-blue-600 text-5xl" title="CSS" />
+            <FaHtml5 className="text-orange-600 text-4xl" title="HTML5" />
+            <FaCss3Alt className="text-blue-600 text-4xl" title="CSS" />
             <SiJavascript
-              className="text-yellow-400 text-5xl"
+              className="text-yellow-400 text-4xl"
               title="JavaScript"
             />
-            <FaReact className="text-blue-400 text-5xl" title="React.js" />
+            <FaReact className="text-blue-400 text-4xl" title="React.js" />
             <SiTypescript
-              className="text-[#3178C6] text-5xl"
+              className="text-[#3178C6] text-4xl"
               title="TypeScript"
             />
           </div>
@@ -71,21 +71,21 @@ const About = () => {
         <div className="flex flex-col justify-center items-center">
           <h3 className="text-xl text-gray-500 my-3">Back-end</h3>
           <div className="flex gap-5">
-            <FaNodeJs className="text-green-600 text-5xl" title="Node.js" />
-            <SiExpress className="text-gray-700 text-5xl" title="Express.js" />
+            <FaNodeJs className="text-green-600 text-4xl" title="Node.js" />
+            <SiExpress className="text-gray-700 text-4xl" title="Express.js" />
             <SiPostgresql
-              className="text-sky-700 text-7xl"
+              className="text-sky-700 text-4xl"
               title="PostgreSQL"
             />
-            <SiSequelize className="text-blue-400 text-5xl" title="Sequelize" />
+            <SiSequelize className="text-blue-400 text-4xl" title="Sequelize" />
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
           <h3 className="text-xl text-gray-500 my-3">Design</h3>
           <div className="flex gap-5">
-            <FaMobileAlt className="text-blue-500 text-5xl" title="mobile" />
-            <FaDesktop className="text-blue-500 text-5xl" title="desktop" />
-            <FiFigma className="text-[#F24E1E] text-5xl" title="Figma" />
+            <FaMobileAlt className="text-blue-500 text-4xl" title="mobile" />
+            <FaDesktop className="text-blue-500 text-4xl" title="desktop" />
+            <FiFigma className="text-[#F24E1E] text-4xl" title="Figma" />
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@ const About = () => {
       <h3 className="text-2xl font-bold text-blue-700 my-6">
         Compétences douces
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 max-w-6xl mx-8">
         {softSkills.map((skill, index) => (
           <CompetenceCard
             key={index}
