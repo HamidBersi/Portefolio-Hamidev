@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// Import des composants SVG (format 3x2 conseillé)
+import { useTranslation } from "react-i18next";
 import { FR, GB, DE } from "country-flag-icons/react/3x2";
 
 type LangKey = "fr" | "en" | "de";
@@ -11,13 +11,23 @@ const FLAGS: Record<LangKey, FlagIcon> = {
   de: DE,
 };
 
-export default function LanguageSelect() {
+export default function LanguageButton() {
+  const { i18n } = useTranslation();
   const [lang, setLang] = useState<LangKey>("fr");
   const Flag = FLAGS[lang];
 
+  // Initialiser avec la langue d'i18next
   useEffect(() => {
-    localStorage.setItem("lang", lang);
-  }, [lang]);
+    const currentLang = i18n.language as LangKey;
+    setLang(currentLang);
+  }, [i18n.language]);
+
+  // Changer la langue quand l'utilisateur sélectionne
+  const handleLanguageChange = (newLang: LangKey) => {
+    setLang(newLang);
+    i18n.changeLanguage(newLang); // Change la langue d'i18next
+    localStorage.setItem("lang", newLang);
+  };
 
   return (
     <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-500 px-2 py-1">
@@ -28,8 +38,8 @@ export default function LanguageSelect() {
       <select
         id="lang"
         value={lang}
-        onChange={(e) => setLang(e.target.value as LangKey)}
-        className="bg-transparent outline-none appearance-none text-sm pl-5"
+        onChange={(e) => handleLanguageChange(e.target.value as LangKey)}
+        className="bg-transparent outline-none appearance-none text-sm pl-3"
       >
         <option value="fr">FR</option>
         <option value="en">EN</option>

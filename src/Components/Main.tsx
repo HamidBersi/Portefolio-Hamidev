@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import Link from "./Button";
 
 const Main = () => {
+  const { t } = useTranslation();
+
   return (
     <main
       className="flex-1 flex flex-col lg:flex-row justify-center items-center px-10 gap-10
@@ -9,22 +12,17 @@ const Main = () => {
       id="main"
     >
       <div className="flex flex-col justify-center items-center max-w-lg">
-        <h2 className="text-3xl font-bold text-gray-900 max-[550px]:text-center">
-          <span className="inline max-[550px]:block">Bonjour, Je suis</span>{" "}
-          <span className="inline max-[550px]:block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+        <h2 className="text-4xl font-bold text-gray-900 text-center md:text-left leading-tight">
+          <span className="block md:inline">{t("main.hello")}</span>{" "}
+          <span className="block md:inline bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Hamid BERSI
           </span>
         </h2>
-        <h3 className="text-xl md:text-2xl font-bold text-blue-700 mt-4">
-          Developpeur Fullstack
+        <h3 className="text-2xl font-bold text-blue-700 mt-4">
+          {t("header.subtitle")}
         </h3>
-        <p className="my-6 text-center">
-          Passionné par le développement web et en constante évolution dans mon
-          apprentissage. J'aime créer des interfaces modernes, claires et
-          fonctionnelles en explorant les dernières technologies pour donner vie
-          à des projets uniques.
-        </p>
-        <Link label="Mes Projets" href="#projects" />
+        <p className="my-6 text-center">{t("main.description")}</p>
+        <Link label={t("buttons.projects")} href="#projects" />
       </div>
       <div>
         <img

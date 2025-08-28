@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,11 +11,13 @@ interface FormData {
 }
 
 function ContactForm() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,6 +30,7 @@ function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     emailjs
       .send(
@@ -42,86 +46,91 @@ function ContactForm() {
       .then(
         (result) => {
           console.log(result.text);
-          toast.success("Message envoyé avec succès !");
-          setFormData({ name: "", email: "", message: "" }); // reset
+          toast.success(t("contact.form.success"));
+          setFormData({ name: "", email: "", message: "" });
         },
         (error) => {
           console.error(error.text);
-          toast.error("Une erreur est survenue. Réessayez.");
+          toast.error(t("contact.form.error"));
         }
-      );
+      )
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
-    <div className="h-145 w-[80%] md:w-[45%]  mx-auto mt-10 p-6 shadow-2xl rounded-2xl text-center bg-blue-50">
+    <div className="h-145 w-[80%] md:w-[45%] mx-auto mt-10 p-6 bg-blue-50 shadow-lg rounded-2xl">
       <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Envoyez-moi un message
+        {t("contact.form.title")}
       </h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Nom */}
         <div>
           <label
             htmlFor="name"
             className="block text-md font-medium text-gray-700"
           >
-            Nom complet
+            {t("contact.form.name")}
           </label>
           <input
             type="text"
             id="name"
-            placeholder="Votre nom complet"
+            placeholder={t("contact.form.namePlaceholder")}
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 w-full border-0 rounded-lg p-4 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="mt-1 w-full bg-white border-0 rounded-lg p-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             required
           />
         </div>
+
         <div>
           <label
             htmlFor="email"
             className="block text-md font-medium text-gray-700"
           >
-            Email
+            {t("contact.form.email")}
           </label>
           <input
             type="email"
             id="email"
-            placeholder="Votre@email.com"
+            placeholder={t("contact.form.emailPlaceholder")}
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 w-full border-0 rounded-lg p-4 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="mt-1 w-full bg-white borde-0 rounded-lg p-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             required
           />
         </div>
 
-        {/* Message */}
         <div>
           <label
             htmlFor="message"
             className="block text-md font-medium text-gray-700"
           >
-            Message
+            {t("contact.form.message")}
           </label>
-
           <textarea
             id="message"
-            placeholder="Parlez-moi de votre projet..."
+            placeholder={t("contact.form.messagePlaceholder")}
             value={formData.message}
             onChange={handleChange}
             rows={4}
-            className="mt-1 w-full border-0 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
+            className="mt-1 w-full bg-white resize-none border-0 rounded-lg p-4 focus:ring-2 focus:ring-blue-400 focus:outline-none mb-5"
             required
-          ></textarea>
+          />
         </div>
 
-        {/* Bouton */}
         <div className="text-center">
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 transition-colors"
+            disabled={isLoading}
+            className={`w-full py-3 rounded-lg font-medium text-lg transition-colors ${
+              isLoading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
+            }`}
           >
-            Envoyer le message
+            {isLoading ? t("contact.form.sending") : t("contact.form.send")}
           </button>
         </div>
       </form>
