@@ -1,9 +1,31 @@
 import LanguageButton from "./LanguageButton";
 import Link from "./Button";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="h-20 sticky top-0 z-50 flex justify-between items-center px-8 py-3 bg-white shadow-md">
+    <header
+      className={`h-30 fixed top-0 z-50 w-full flex justify-between items-center px-8 py-3 bg-white shadow-md trnaition-transform duration-300 ${
+        showHeader ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="flex flex-col justify-center items-center text-center">
         <h1 className="text-2xl font-bold text-black-900 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Hamid BERSI
@@ -24,9 +46,9 @@ const Header = () => {
           after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300
           hover:after:scale-x-100
         "
-                href="#"
+                href="#main"
               >
-                Menu
+                Acceuil
               </a>
             </li>
             <li>
@@ -40,7 +62,7 @@ const Header = () => {
           after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300
           hover:after:scale-x-100
         "
-                href="#"
+                href="#about"
               >
                 À Propos
               </a>
@@ -56,7 +78,7 @@ const Header = () => {
           after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300
           hover:after:scale-x-100
         "
-                href="#"
+                href="#projects"
               >
                 Projets
               </a>
@@ -65,7 +87,7 @@ const Header = () => {
               <LanguageButton />
             </li>
             <li>
-              <Link label="Contactez-Moi" href="#" />
+              <Link label="Contactez-Moi" href="#contact" />
             </li>
           </ul>
         </nav>

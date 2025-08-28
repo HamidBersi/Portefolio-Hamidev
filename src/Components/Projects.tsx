@@ -19,7 +19,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center" id="projects">
       <h3 className="text-2xl font-bold text-blue-700 mb-10">Mes Projets</h3>
       <div className="flex justify-center items-center gap-7">
         {projects.map((project, index) => (

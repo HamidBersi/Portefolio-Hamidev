@@ -36,7 +36,7 @@ const About = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center my-20">
+    <div className="flex flex-col justify-center items-center my-20" id="about">
       <h2 className="text-3xl font-bold text-gray-900">À Propos de moi</h2>
       <p className="my-6 max-w-4xl text-center text-gray-500">
         Je suis un développeur FullStack récemment diplômé, passionné par la
